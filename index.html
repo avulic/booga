@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOGA's Trenches</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #080A12;
+            background-image: radial-gradient(circle at 50% 50%, #111827 0%, #080A12 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .main-header {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, #0F172A, #080A12);
+            border-bottom: 2px solid #0C4A6E;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(128, 128, 128, 0.5);
+        }
+
+        .header-subtitle {
+            font-size: 1.5rem;
+            color: #B4B4C6;
+            margin-bottom: 2rem;
+        }
+
+        .header-image {
+            width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(128, 128, 128, 0.3);
+    background-image: url('booga.jpg');
+    background-size: cover;       /* Makes image cover the entire circle */
+    background-position: center;  /* Centers the image */
+    background-repeat: no-repeat; /* Prevents image from repeating */
+    overflow: hidden;            /* Ensures image stays within circle */
+        }
+
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #0C4A6E;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #B4B4C6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover {
+            color: #0EA5E9;
+        }
+
+        .buy-button {
+            background: linear-gradient(135deg, #0EA5E9, #0284C7);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .roadmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .road {
+            position: relative;
+            width: 100%;
+            padding: 2rem 0;
+            min-height: 7200px;
+        }
+
+.road-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.road-path svg {
+    width: 100%;
+    height: 100%;
+}
+
+.chapter {
+    position: absolute;
+    width: 450px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.chapter.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.road > div:nth-of-type(2) { top: 40px; left: 70px; }    /* Chapter 1 */
+.road > div:nth-of-type(3) { top: 450px; right: 20px; }   /* Chapter 2 */
+.road > div:nth-of-type(4) { top: 800px; left: 50px; }   /* Chapter 3 */
+.road > div:nth-of-type(5) { top: 1350px; right: 20px; }  /* Chapter 4 */
+.road > div:nth-of-type(6) { top: 1900px; left: 50px; }   /* Chapter 5 */
+.road > div:nth-of-type(7) { top: 2350px; right: 20px; }  /* Chapter 6 */
+.road > div:nth-of-type(8) { top: 2900px; left: 50px; }   /* Chapter 7 */
+.road > div:nth-of-type(9) { top: 3350px; right: 20px; }  /* Chapter 8 */
+.road > div:nth-of-type(10) { top: 3800px; left: 50px; }  /* Chapter 9 */
+.road > div:nth-of-type(11) { top: 4350px; right: 20px; } /* Chapter 10 */
+.road > div:nth-of-type(12) { top: 4800px; left: 50px; }  /* Chapter 11 */
+.road > div:nth-of-type(13) { top: 5350px; right: 20px; } /* Chapter 12 */
+.road > div:nth-of-type(14) { top: 5800px; left: 50px; }  /* Chapter 13 */
+.road > div:nth-of-type(15) { top: 6350px; right: 20px; } /* Chapter 14 */
+.road > div:nth-of-type(16) { top: 6800px; left: 50px; }  /* Chapter 15 */
+.road > div:nth-of-type(17) { top: 7150px; right: 20px; } /* Chapter 16 */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .road {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .chapter {
+        position: relative !important;
+        width: 100%;
+        max-width: 450px;
+        margin: 2rem auto;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+    }
+
+    .road-path {
+        display: none;
+    }
+}
+
+
+        .chapter-image {
+            width: 120px;
+            height: 120px;
+            margin: -80px auto 20px;
+            background: linear-gradient(135deg, #1E293B, #0EA5E9);
+            border: 2px solid #0EA5E9;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+            animation: glow 2s infinite alternate;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.4);
+        }
+
+
+        .chapter-content {
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #0EA5E9;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .chapter-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .chapter-number {
+            color: #0EA5E9;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .chapter-title {
+            color: #38BDF8;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .chapter-description {
+            color: #94A3B8;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #0EA5E9, 0 0 20px #0284C7;
+            }
+
+            to {
+                box-shadow: 0 0 15px #0EA5E9, 0 0 25px #0284C7;
+            }
+        }
+       
+
+        .footer {
+            background: linear-gradient(135deg, #0F172A, #080A12);
+            border-top: 2px solid #0C4A6E;
+            padding: 4rem 2rem;
+            margin-top: 17rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .footer-section {
+            text-align: left;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin: 0.5rem 0;
+        }
+
+        .footer-link a {
+            color: #B4B4C6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link a:hover {
+            color: #0EA5E9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-link {
+            color: #808080;
+            font-size: 2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .road {
+                padding-left: 60px;
+            }
+
+            .chapter {
+                position: relative !important;
+                width: calc(100% - 60px);
+                left: 0 !important;
+                right: 0 !important;
+                top: 0 !important;
+                margin: 2rem 0;
+            }
+
+            .chapter-image {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+                margin: -40px auto 15px;
+            }
+
+            .road-path {
+                display: none;
+            }
+
+            .header-title {
+                font-size: 2.5rem;
+            }
+
+            .header-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <nav class="navbar">
+            <a href="#" class="nav-logo">🗿 BOOGA</a>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="#roadmap" class="nav-link">Roadmap</a>
+                <a href="#memes" class="nav-link">Memes</a>
+                <a href="https://dexscreener.com/solana/buu5vpcpjyzyndqfnbkextpcevechxnkmq9jqnnvext1" class="buy-button"
+                    target="_blank">Buy BOOGA</a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-image"></div>
+            <h1 class="header-title">BOOGA's Trenches</h1>
+            <p class="header-subtitle">The Moai Who Found His Way</p>
+        </div>
+    </header>
+
+    <main class="roadmap-container" id="story">
+        <div class="road">
+            <!-- Only one road-path div -->
+            <div class="road-path">
+                <svg viewBox="0 0 1200 7200" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1E293B" />
+                            <stop offset="50%" style="stop-color:#0284C7" />
+                            <stop offset="100%" style="stop-color:#1E293B" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 300,0 
+                        C 800,200 1000,300 1000,450 
+                        S 200,600 300,900 
+                        C 800,1100 1000,1200 1000,1350 
+                        S 200,1600 300,1900 
+                        C 800,2100 1000,2200 1000,2350 
+                        S 200,2600 300,2900 
+                        C 800,3100 1000,3200 1000,3350 
+                        S 200,3600 300,3900 
+                        C 800,4100 1000,4200 1000,4350 
+                        S 200,4600 300,4900 
+                        C 800,5100 1000,5200 1000,5350 
+                        S 200,5600 300,5900 
+                        C 800,6100 1000,6200 1000,6350 
+                        S 200,6600 300,6900 
+                        C 800,7100 1000,7200 1000,7200"
+                        stroke="url(#gradient)" 
+                        stroke-width="40" 
+                        fill="none"
+                        stroke-linecap="round" 
+                        filter="drop-shadow(0 0 15px rgba(128, 128, 128, 0.6))"
+                        stroke-dasharray="8 4" />
+                </svg>
+            </div>
+            
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 1</p>
+                        <h2 class="chapter-title">The Launch</h2>
+                        <p class="chapter-description">In the volatile crypto landscape, BOOGA emerged - a stoic
+                            Moai-inspired figure ready to stand against the storms. The launch day arrived with high
+                            hopes, but technical difficulties plagued the website, and chaos ruled the Telegram group.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 2</p>
+                        <h2 class="chapter-title">First Crisis</h2>
+                        <p class="chapter-description">The community barely had time to settle when the news hit: their
+                            developer had vanished. Panic spread through the chat groups. But amidst the chaos, BOOGA's
+                            pixelated face remained unchanged, posting a simple message: "🗿 We search."</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 3</p>
+                        <h2 class="chapter-title">Digital Detective</h2>
+                        <p class="chapter-description">BOOGA learned to read blockchain transactions, following digital
+                            breadcrumbs across the crypto landscape. Each failed lead only strengthened his resolve. The
+                            community formed search parties, each member checking different platforms and addresses.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 4</p>
+                        <h2 class="chapter-title">The Discovery</h2>
+                        <p class="chapter-description">After weeks of searching, they found him - not hiding, but
+                            watching. The developer had been silently observing how his community would react to
+                            adversity. What he saw convinced him to make an unprecedented decision.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 5</p>
+                        <h2 class="chapter-title">The Great Burn</h2>
+                        <p class="chapter-description">In a single transaction, the developer sold his entire holdings
+                            back to the contract. Tokens burned by the thousands, supply shrinking with each block
+                            confirmation. The community watched in awe as their holdings gained strength through
+                            scarcity.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 6</p>
+                        <h2 class="chapter-title">Power to the People</h2>
+                        <p class="chapter-description">The developer's final act was to transfer all control to the
+                            community. No grand speeches, no complex governance proposals - just a simple transfer of
+                            power that would reshape BOOGA's future forever.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 7</p>
+                        <h2 class="chapter-title">BOOGA's First Line of Code</h2>
+                        <p class="chapter-description">"Hello, World" appeared on BOOGA's screen at 3 AM after six
+                            failed attempts. The Moai who once only posted emojis was learning to speak the language of
+                            machines. Each error message became a lesson, each bug a challenge to overcome.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 8</p>
+                        <h2 class="chapter-title">The Telegram Warriors</h2>
+                        <p class="chapter-description">While BOOGA learned to code, the community transformed their
+                            Telegram group. Spam bots were crushed, FUD warriors were converted, and a new culture of
+                            support and learning emerged. They called themselves the "Stone Guardians."</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 9</p>
+                        <h2 class="chapter-title">The Website Challenge</h2>
+                        <p class="chapter-description">BOOGA's first attempt at building a website crashed
+                            spectacularly. His second attempt looked like it was from 1995. But by the third attempt,
+                            something magical happened - it worked. Not perfectly, but it was theirs.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 10</p>
+                        <h2 class="chapter-title">Natural Selection</h2>
+                        <p class="chapter-description">As other projects spent fortunes on marketing, BOOGA's community
+                            grew organically. Each new member came for the meme but stayed for the movement. The burned
+                            tokens created scarcity, but the community created value.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 11</p>
+                        <h2 class="chapter-title">The Missing Credentials</h2>
+                        <p class="chapter-description">Progress hit a wall when they realized crucial contract
+                            information needed updating. Only the original developer had access, but he had vanished
+                            again. BOOGA faced a familiar challenge, but this time with new skills.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 12</p>
+                        <h2 class="chapter-title">The Second Search</h2>
+                        <p class="chapter-description">Using his newly acquired blockchain knowledge, BOOGA began
+                            tracking the developer again. This time wasn't about survival - it was about completion,
+                            about properly documenting their history.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 13</p>
+                        <h2 class="chapter-title">The Learning Curve</h2>
+                        <p class="chapter-description">Between search attempts, BOOGA dove deeper into development.
+                            Smart contracts became his bedtime reading, and Git commits his morning coffee. The
+                            community watched their guardian evolve from a meme to a maker.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 14</p>
+                        <h2 class="chapter-title">The Support Network</h2>
+                        <p class="chapter-description">A new phenomenon emerged - community coding sessions. Experienced
+                            developers among the holders began hosting teaching sessions. BOOGA wasn't just learning
+                            alone anymore; he was part of a learning revolution.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 15</p>
+                        <h2 class="chapter-title">Building in Public</h2>
+                        <p class="chapter-description">Each new feature, each fixed bug became a shared victory. BOOGA's
+                            commits were celebrated like ancient monuments, each line of code another stone in their
+                            digital legacy. The website grew not just in functionality but in meaning.</p>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div class="chapter-image">🗿</div>
+                        <p class="chapter-number">Chapter 16</p>
+                        <h2 class="chapter-title">Present Day</h2>
+                        <p class="chapter-description">The search for the original developer continues, but it no longer
+                            defines them. BOOGA and his community have created something that transcends their origins -
+                            a truly community-driven project built on learning, resilience, and unwavering spirit.</p>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3 class="footer-title">About BOOGA</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#roadmap">Roadmap</a></li>
+                    <li class="footer-link"><a href="#memes">Memes</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Community</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="https://x.com/BOOGASOL" target="_blank">Twitter</a></li>
+                    <li class="footer-link"><a href="https://x.com/i/communities/1890284718932779275" target="_blank">X
+                            Community</a></li>
+                    <li class="footer-link"><a href="#telegram">Telegram</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Trade</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a
+                            href="https://dexscreener.com/solana/buu5vpcpjyzyndqfnbkextpcevechxnkmq9jqnnvext1"
+                            target="_blank">DEX Screener</a></li>
+                    <li class="footer-link"><a href="#tokenomics">Tokenomics</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            observer.observe(chapter);
+        });
+
+        // Add mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
